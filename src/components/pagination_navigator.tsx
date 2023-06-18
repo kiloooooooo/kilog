@@ -17,8 +17,12 @@ function NavButton({ href, disabled, type }: { href: string, disabled: boolean, 
             icon = 'last_page'
             break
     }
+    const colorClassName =
+        disabled
+            ? 'surface-variant on-surface-variant-text'
+            : 'primary on-primary-text'
     const elem = (
-        <div className={'primary on-primary-text rounded-full flex justify-center items-center'}>
+        <div className={`${colorClassName} rounded-full flex justify-center items-center`}>
             <span className={'material-symbols-outlined m-2'}>{icon}</span>
         </div>
     )
