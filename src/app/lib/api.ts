@@ -168,3 +168,5 @@ export function getPost(postDirName: string) {
 
     return post
 }
+
+export type { PostProperties, Post }
