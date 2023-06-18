@@ -1,6 +1,6 @@
 import './globals.css'
 import { Inter, Noto_Sans, Noto_Sans_JP } from 'next/font/google'
-import ListFrame from "@/components/list_frame";
+import ListFrame from "@/components/list_frame"
 
 const inter = Inter({ subsets: ['latin'] })
 const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] })

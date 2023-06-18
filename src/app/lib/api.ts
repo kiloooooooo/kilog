@@ -34,11 +34,10 @@ function formatDate(date: Date) {
 }
 
 function getArticleCategoryMarkerPath(dir: string) {
-    const markerFile = fs.readdirSync(dir, { withFileTypes: true })
+    const markerFile = fs.readdirSync(path.resolve(dir), { withFileTypes: true })
         .filter((dirent, idx, arr) => dirent.isFile())
         .filter((file, idx, arr) => file.name.endsWith(apiConfig.categoryMarkerExt))
-    const markerDirent = markerFile[0]
-    return path.join(markerDirent.path, markerDirent.name)
+    return markerFile[0]
 }
 
 /**
@@ -51,21 +50,29 @@ function getOrCreateCategoryMarker(dir: string) {
     const postFile = fs.readFileSync(postFilePath)
     const postFileChecksum = crypto.createHash('sha256').update(postFile).digest('hex')
     const catMarker = getArticleCategoryMarkerPath(dir)
-    const markerChecksum = fs.readFileSync(catMarker, 'utf-8')
 
-    if (postFileChecksum === markerChecksum) {
-        return catMarker.split('.')[0]
-    }
+    // catMarkerがundefinedでなければ（=マーカファイルが存在していれば）
+    if (catMarker) {
+        const catMarkerPath = path.resolve(path.join(catMarker.path, catMarker.name))
+        const markerChecksum = fs.readFileSync(catMarkerPath, 'utf-8')
 
-    // （存在していれば）旧カテゴリマーカを削除
-    try {
-        fs.statSync(catMarker)    // ファイルが存在しなければエラー → catch
-        fs.unlinkSync(catMarker)
-    } catch (e: any) {
-        if (e.code === 'ENOENT') {
-            // do nothing
+        // catMarkerのチェックサムと記事のチェックサムを比較
+        if (postFileChecksum === markerChecksum) {
+            // 合致すればそのカテゴリを返す
+            return catMarker.name.split('.')[0]
+        }
+
+        // （存在していれば）旧カテゴリマーカを削除
+        try {
+            fs.statSync(catMarkerPath)    // ファイルが存在しなければエラー → catch
+            fs.unlinkSync(catMarkerPath)
+        } catch (e: any) {
+            if (e.code === 'ENOENT') {
+                // do nothing
+            }
         }
     }
+
     // カテゴリマーカ作り直し
     const { data, content } = matter(postFile)
     const category = data['category'] ?? apiConfig.defaultCategoryName
@@ -85,8 +92,10 @@ export function getPagesCount(filterCategory: string | null) {
     const articlesCount =
         filterCategory == null
             ? dirs.length
-            : dirs.filter((dir, idx, arr) =>
-                getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory).length
+            : dirs
+                .filter((dirent, idx, arr) => dirent.isDirectory())
+                .filter((dir, idx, arr) =>
+                    getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory).length
     return Math.ceil(articlesCount / apiConfig.articlesPerPage)
 }
 
@@ -121,13 +130,13 @@ export function getPost(postDirName: string) {
     const postDir = path.join(baseDir, postDirName)
     // その中の画像が含まれるディレクトリ
     const imgDir = path.join(postDir, 'img')
-    console.log(imgDir)
     // の中の画像ファイル一覧
     const imgs =
         fs.readdirSync(imgDir, { withFileTypes: true })
             .filter((file, idx, arr) => file.isFile())
             .filter((file, idx, arr) => apiConfig.imageFileExts.includes(file.name.split('.').reverse()[0].toLowerCase()))
-            .map((file, idx, arr) => path.join(baseDirRemote, postDirName, 'img', file.name))
+            // .map((file, idx, arr) => path.join(baseDirRemote, postDirName, 'img', file.name))
+            .map((file, idx, arr) => [baseDirRemote, postDirName, 'img', file.name].join('/'))
     // 最初の画像ファイル
     const leadingImage = imgs[0]
     const leadingImageDims = imageSize(remotePathToLocal(leadingImage))

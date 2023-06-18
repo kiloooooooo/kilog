@@ -2,7 +2,7 @@ import * as React from 'react'
 import AppBar from "@/components/appbar"
 import Navigation from "@/components/navigation"
 import About from "@/components/about"
-import RecentItems from "@/components/recent_items"
+// import RecentItems from "@/components/recent_items"
 
 export default function ListFrame({ child }: { child: React.ReactNode }) {
     return (
@@ -16,7 +16,7 @@ export default function ListFrame({ child }: { child: React.ReactNode }) {
                     <div className={'mb-16'}/>
                     <About/>
                     <div className={'mb-16'}/>
-                    <RecentItems/>
+                    {/*<RecentItems/>*/}
                 </div>
             </div>
             <div className={'desktop:hidden max-tablet:hidden pt-16'}>
@@ -27,7 +27,7 @@ export default function ListFrame({ child }: { child: React.ReactNode }) {
                         <div className={'mb-16'}/>
                         <About/>
                         <div className={'mb-16'}/>
-                        <RecentItems/>
+                        {/*<RecentItems/>*/}
                     </div>
                     <div className={'col-span-8'}>
                         { child }
@@ -48,7 +48,7 @@ export default function ListFrame({ child }: { child: React.ReactNode }) {
                     <div className={'col-span-3'}>
                         <About/>
                         <div className={'mb-16'}/>
-                        <RecentItems/>
+                        {/*<RecentItems/>*/}
                     </div>
                 </div>
             </div>
