@@ -35,8 +35,8 @@ function formatDate(date: Date) {
 
 function getArticleCategoryMarkerPath(dir: string) {
     const markerFile = fs.readdirSync(path.resolve(dir), { withFileTypes: true })
-        .filter((dirent, idx, arr) => dirent.isFile())
-        .filter((file, idx, arr) => file.name.endsWith(apiConfig.categoryMarkerExt))
+        .filter((dirent) => dirent.isFile())
+        .filter((file) => file.name.endsWith(apiConfig.categoryMarkerExt))
     return markerFile[0]
 }
 
@@ -93,8 +93,8 @@ export function getPagesCount(filterCategory: string | null) {
         filterCategory == null
             ? dirs.length
             : dirs
-                .filter((dirent, idx, arr) => dirent.isDirectory())
-                .filter((dir, idx, arr) =>
+                .filter((dirent) => dirent.isDirectory())
+                .filter((dir) =>
                     getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory).length
     return Math.ceil(articlesCount / apiConfig.articlesPerPage)
 }
@@ -107,18 +107,18 @@ export function getPosts(page: number = 1, filterCategory: string | null) {
     const startIdx = (page-1) * apiConfig.articlesPerPage
     const endIdx = page * apiConfig.articlesPerPage
     let articleDirs = dirs
-        .filter((d, idx, arr) => !(d.name.startsWith('.')))
-        .filter((d, idx, arr) => d.isDirectory())
+        .filter((d) => !(d.name.startsWith('.')))
+        .filter((d) => d.isDirectory())
 
     if (filterCategory != null) {
         articleDirs = articleDirs
-            .filter((dir, idx, arr) =>
+            .filter((dir, ) =>
                 getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory)
     }
 
     return articleDirs
         .slice(startIdx, endIdx)
-        .map((dir, idx, arr) => getPost(dir.name))
+        .map((dir, ) => getPost(dir.name))
 }
 
 /**
@@ -133,10 +133,10 @@ export function getPost(postDirName: string) {
     // の中の画像ファイル一覧
     const imgs =
         fs.readdirSync(imgDir, { withFileTypes: true })
-            .filter((file, idx, arr) => file.isFile())
-            .filter((file, idx, arr) => apiConfig.imageFileExts.includes(file.name.split('.').reverse()[0].toLowerCase()))
+            .filter((file) => file.isFile())
+            .filter((file) => apiConfig.imageFileExts.includes(file.name.split('.').reverse()[0].toLowerCase()))
             // .map((file, idx, arr) => path.join(baseDirRemote, postDirName, 'img', file.name))
-            .map((file, idx, arr) => [baseDirRemote, postDirName, 'img', file.name].join('/'))
+            .map((file) => [baseDirRemote, postDirName, 'img', file.name].join('/'))
     // 最初の画像ファイル
     const leadingImage = imgs[0]
     const leadingImageDims = imageSize(remotePathToLocal(leadingImage))
