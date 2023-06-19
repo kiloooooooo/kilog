@@ -118,7 +118,7 @@ export function getPosts(page: number = 1, filterCategory: string | null) {
 
     return articleDirs
         .slice(startIdx, endIdx)
-        .map((dir, ) => getPost(dir.name))
+        .map((dir, ) => getPost(dir.name)!)
 }
 
 /**
@@ -128,6 +128,15 @@ export function getPosts(page: number = 1, filterCategory: string | null) {
 export function getPost(postDirName: string) {
     // 投稿のディレクトリ
     const postDir = path.join(baseDir, postDirName)
+    // 中身を見る前に，存在確認
+    try {
+        const _ = fs.statSync(postDir)
+    } catch (e: any) {
+        if (e.code === 'ENOENT') {
+            return null
+        }
+    }
+
     // その中の画像が含まれるディレクトリ
     const imgDir = path.join(postDir, 'img')
     // の中の画像ファイル一覧

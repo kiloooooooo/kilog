@@ -117,6 +117,8 @@ body {
 h1 {
   font-size: var(--font-size-header-l);
   font-weight: var(--font-weight-header-l);
+  margin-top: 64px;
+  margin-bottom: 24px;
 }
 
 @media(max-width: 520px) {
@@ -129,6 +131,8 @@ h1 {
 h2 {
   font-size: var(--font-size-header-m);
   font-weight: var(--font-weight-header-m);
+  margin-top: 64px;
+  margin-bottom: 24px;
 }
 
 @media(max-width: 520px) {
@@ -141,6 +145,8 @@ h2 {
 h3 {
   font-size: var(--font-size-header-s);
   font-weight: var(--font-weight-header-s);
+  margin-top: 40px;
+  margin-bottom: 24px;
 }
 
 @media(max-width: 520px) {
@@ -153,6 +159,8 @@ h3 {
 h4 {
   font-size: var(--font-size-header-xs);
   font-weight: var(--font-weight-header-xs);
+  margin-top: 40px;
+  margin-bottom: 16px;
 }
 
 @media(max-width: 520px) {
@@ -165,6 +173,8 @@ h4 {
 h5 {
   font-size: var(--font-size-header-xxs);
   font-weight: var(--font-weight-header-xxs);
+  margin-top: 40px;
+  margin-bottom: 16px;
 }
 
 @media(max-width: 520px) {
