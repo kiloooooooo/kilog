@@ -1674,6 +1674,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+marked-base-url@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/marked-base-url/-/marked-base-url-1.0.1.tgz#13a35c6d547b43aafa845ce03d8630e0f94eb2e2"
+  integrity sha512-i/OKU5tfivNhglK6F0PgXjlM0hgLXXEi8wEtf5sqNP9HgRT6VCHA+VTvWETEzIpNtbxuuoWt+gei4JTIs71A2Q==
+
 marked@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-5.1.0.tgz#cf51f03ba04dfb3469774029fd0106d258658767"
