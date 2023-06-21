@@ -17,6 +17,7 @@
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.8.0",
     "image-size": "^1.0.2",
     "marked": "^5.1.0",
     "marked-base-url": "^1.0.1",

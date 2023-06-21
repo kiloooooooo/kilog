@@ -1,5 +1,9 @@
 @import url(../css/theme.css);
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-light.min.css');
+@media(prefers-color-scheme: dark) {
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css');
+}
 
 @tailwind base;
 @tailwind components;
