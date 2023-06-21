@@ -28,7 +28,7 @@ export default function customMiddleware(articleDir: string) {
                 }
 
                 const table = `<table class="border border-gray-400"><thead class="border border-gray-400">${header}</thead>${body}</table>`
-                return `<div class="max-w-full overflow-x-scroll">${table}</div>`
+                return `<div class="max-w-full overflow-x-auto mt-6 mb-6">${table}</div>`
             },
             tablecell(content: string, flags: IFlagsObject) {
                 const type = flags.header ? 'th' : 'td'
@@ -43,7 +43,7 @@ export default function customMiddleware(articleDir: string) {
                 const [lang, title] = infostring.split(':')
                 return `<div class="w-full mt-6 mb-6 flex flex-col rounded-2xl bg-blue-100 dark:bg-gray-900">
                             <pre class="pl-4 pr-4 pt-1 pb-1 rounded-t-2xl bg-blue-300 dark:bg-gray-950">${title}</pre>
-                            <pre class="whitespace-pre-wrap overflow-x-scroll ml-4 mr-4 mt-2 mb-4">${highlight.highlight(code, { language: lang }).value}</pre>
+                            <pre class="whitespace-pre-wrap overflow-x-auto ml-4 mr-4 mt-2 mb-4">${highlight.highlight(code, { language: lang }).value}</pre>
                         </div>`.trim()
             }
         }

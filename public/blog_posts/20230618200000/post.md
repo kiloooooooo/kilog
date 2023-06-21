@@ -12,6 +12,12 @@ hogehoge
 | A | h | A | h    | A | h | A | h | A | h    | A | h | A | h | A | h    | A | h | A | h | A | h    | A | h |
 | B | f | B | f    | B | f | B | f | B | f    | B | f | B | f | B | f    | B | f | B | f | B | f    | B | f |
 
+| 1 | 2 |
+|---|---|
+| a | b |
+
+↓コードですよ
+
 ```C++:hello.cpp
 #include <iostream>
 
