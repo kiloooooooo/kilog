@@ -45,6 +45,15 @@ export default function customMiddleware(articleDir: string) {
                             <pre class="pl-4 pr-4 pt-1 pb-1 rounded-t-2xl bg-blue-300 dark:bg-gray-950">${title}</pre>
                             <pre class="whitespace-pre-wrap overflow-x-auto ml-4 mr-4 mt-2 mb-4">${highlight.highlight(code, { language: lang }).value}</pre>
                         </div>`.trim()
+            },
+            list(body: string, ordered: boolean, start: number) {
+                const type = ordered ? 'ol' : 'ul'
+                const listStyle = ordered ? 'list-decimal' : 'list-disc'
+                const startAttr = (ordered && start !== 1) ? `start="${start}"` : ''
+                return `<${type} class="pl-10 ${listStyle}" ${startAttr}>${body}</${type}>`
+            },
+            listitem(text: string) {
+                return `<li class="break-all">${text}</li>`
             }
         }
     }

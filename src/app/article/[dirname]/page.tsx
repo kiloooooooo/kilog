@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import { marked } from 'marked'
 import { getPost } from '@/app/lib/api'
 import { NotFound } from '@/components/not_found'
 import BreadCrumb from '@/components/breadcrumb'
 import customMiddleware from '@/app/lib/marked_custom_middleware'
+import ArticleProps from '@/components/article_props'
 
 export default function Article({ params }: { params: { dirname: string } }) {
     const post = getPost(params.dirname)
@@ -29,12 +31,7 @@ export default function Article({ params }: { params: { dirname: string } }) {
                     },
                 ]}/>
             </div>
-            {/*<div className={'flex flex-col'}>*/}
-            {/*    <span className={'body-l'}>{ post.properties.datetime }</span>*/}
-            {/*    <h1 className={'header-l'}>{ post.properties.title }</h1>*/}
-            {/*    <span className={'body-l'}>{ post.properties.category }</span>*/}
-            {/*    <span className={'body-l'}>{ post.properties.tags }</span>*/}
-            {/*</div>*/}
+            <ArticleProps postProps={post.properties} />
             <div className={'article-markdown-zone'} dangerouslySetInnerHTML={{ __html: contentHtml }}/>
         </div>
     )

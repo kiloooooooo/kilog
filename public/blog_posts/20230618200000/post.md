@@ -1,7 +1,10 @@
 ---
-title: piyopiyo
+title: 長い長い長い長い長い長い長いタイトル
 category: 'tech'
 datetime: '2023-06-18 20:00:00'
+tags:
+  - alpha
+  - bravo
 ---
 
 # hoge
@@ -16,7 +19,18 @@ hogehoge
 |---|---|
 | a | b |
 
-↓コードですよ
+- a
+- b
+  - c
+    - d
+
+1. a
+2. b
+   1. c
+      1. d
+         1. eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+
+↓コード**ですよ**
 
 ```C++:hello.cpp
 #include <iostream>

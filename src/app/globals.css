@@ -188,6 +188,26 @@ h5 {
   }
 }
 
+ol li {
+  list-style: decimal;
+}
+
+ol li li {
+  list-style: lower-roman;
+}
+
+ol li li li {
+  list-style: lower-alpha;
+}
+
+ol li li li li {
+  list-style: lower-greek;
+}
+
+ol li li li li li {
+  list-style: decimal-leading-zero;
+}
+
 .body-l {
   font-size: 16px;
   font-weight: 400;
@@ -247,4 +267,8 @@ h5 {
 .article-markdown-zone p {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+.text-align-last-center {
+  text-align-last: center;
 }
