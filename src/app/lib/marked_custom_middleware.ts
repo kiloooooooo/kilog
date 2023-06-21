@@ -20,7 +20,7 @@ export default function customMiddleware(articleDir: string) {
                 return `<p class="body-l">${text}</p>`
             },
             image(href: string, title: string, text: string) {
-                return `<img src="${href}" alt="${text}">`
+                return `<a href="${href}" target="_new"><img class="rounded-2xl" src="${href}" alt="${text}"></a>`
             },
             table(header: string, body: string) {
                 if (body) {
