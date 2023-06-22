@@ -272,3 +272,21 @@ ol li li li li li {
 .text-align-last-center {
   text-align-last: center;
 }
+
+.dark-only {
+  display: none;
+}
+
+.light-only {
+  display: inherit;
+}
+
+@media(prefers-color-scheme: dark) {
+  .dark-only {
+    display: inherit;
+  }
+
+  .light-only {
+    display: none;
+  }
+}

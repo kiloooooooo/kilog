@@ -162,7 +162,7 @@ export function getPost(postDirName: string) {
     // ファイルの中身とか属性を詰め込んでreturn，undefinedならデフォルト値
     const post: Post = {
         properties: {
-            dirname: postDir,
+            dirname: postDirName,
             title: data['title'] ?? 'No title',
             datetime: data['datetime'] ?? formatDate(postFileStats.mtime),
             category: data['category'] ?? 'N/A',

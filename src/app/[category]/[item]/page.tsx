@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import  { useParams } from 'next/navigation'
-import ListFrame from "@/components/list_frame"
 import PaginationNavigator from "@/components/pagination_navigator";
 import ArticleList from "@/components/article_list";
 

@@ -1,6 +1,6 @@
 import './globals.css'
-import { Inter, Noto_Sans, Noto_Sans_JP } from 'next/font/google'
-import ListFrame from "@/components/list_frame"
+import {Inter, Noto_Sans, Noto_Sans_JP} from 'next/font/google'
+import Frame, { FrameLayout } from "@/components/frame"
 
 const inter = Inter({ subsets: ['latin'] })
 const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] })
@@ -19,7 +19,10 @@ export default function RootLayout({
     return (
         <html lang="jp">
             <body className={`${notoSans.className} ${notoSansJP.className}`}>
-                <ListFrame child={children}/>
+                {/*<Frame layout={FrameLayout.CENTER}>*/}
+                {/*    { children }*/}
+                {/*</Frame>*/}
+                { children }
             </body>
         </html>
     )

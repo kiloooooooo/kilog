@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function BreadCrumb({ hierarchy }: { hierarchy: { title: string, href: string | null }[] }) {
     return (
-        <div className={'flex flex-row items-center'}>
+        <div className={'flex flex-row flex-wrap items-center'}>
             {
                 hierarchy.map((item, idx) => (
                     <>
@@ -13,8 +13,8 @@ export default function BreadCrumb({ hierarchy }: { hierarchy: { title: string, 
                         }
                         {
                             item.href == null
-                                ? <span key={idx}>{item.title}</span>
-                                : <Link className={'underline text-blue-500'} href={item.href} key={idx}>{item.title}</Link>
+                                ? <span className={'body-l'} key={idx}>{item.title}</span>
+                                : <Link className={'body-l hover:underline text-blue-500'} href={item.href} key={idx}>{item.title}</Link>
                         }
                     </>
                 ))
