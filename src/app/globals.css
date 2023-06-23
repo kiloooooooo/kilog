@@ -290,3 +290,11 @@ ol li li li li li {
     display: none;
   }
 }
+
+.katex-html {
+  display: none;
+}
+
+.katex {
+  font-size: 1.2em;
+}
