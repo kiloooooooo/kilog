@@ -5,7 +5,7 @@ const apiConfig = {
         'jpeg',
         'gif'
     ],
-    articlesPerPage: 2,
+    articlesPerPage: 5,
     defaultCategoryName: 'others',
     categoryMarkerExt: '.catmarker'
 }
