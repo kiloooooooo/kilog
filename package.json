@@ -29,6 +29,6 @@
     "typescript": "5.1.3"
   },
   "devDependencies": {
-    "license-report": "^6.4.0"
+    "license-checker-rseidelsohn": "^4.2.6"
   }
 }
