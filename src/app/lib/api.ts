@@ -3,6 +3,7 @@ import path from 'path'
 import crypto from 'crypto'
 import matter from 'gray-matter'
 import imageSize from 'image-size'
+import semver from 'semver'
 import apiConfig from './apiconfig'
 
 const baseDirRemote = '/blog_posts'
@@ -53,7 +54,7 @@ function getOrCreateCategoryMarker(dir: string) {
 
     // catMarkerがundefinedでなければ（=マーカファイルが存在していれば）
     if (catMarker) {
-        const catMarkerPath = path.resolve(path.join(catMarker.path, catMarker.name))
+        const catMarkerPath = path.resolve(path.join(dir, catMarker.name))
         const markerChecksum = fs.readFileSync(catMarkerPath, 'utf-8')
 
         // catMarkerのチェックサムと記事のチェックサムを比較
@@ -95,7 +96,7 @@ export function getPagesCount(filterCategory: string | null) {
             : dirs
                 .filter((dirent) => dirent.isDirectory())
                 .filter((dir) =>
-                    getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory).length
+                    getOrCreateCategoryMarker(path.join(baseDir, dir.name)) == filterCategory).length
     return Math.ceil(articlesCount / apiConfig.articlesPerPage)
 }
 
@@ -113,7 +114,7 @@ export function getPosts(page: number = 1, filterCategory: string | null) {
     if (filterCategory != null) {
         articleDirs = articleDirs
             .filter((dir, ) =>
-                getOrCreateCategoryMarker(path.join(dir.path, dir.name)) == filterCategory)
+                getOrCreateCategoryMarker(path.join(baseDir, dir.name)) == filterCategory)
     }
 
     return articleDirs
