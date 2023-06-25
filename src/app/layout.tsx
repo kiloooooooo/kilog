@@ -1,6 +1,7 @@
 import './globals.css'
 import {Inter, Noto_Sans, Noto_Sans_JP} from 'next/font/google'
-import Frame, { FrameLayout } from "@/components/frame"
+import { Analytics } from '@vercel/analytics'
+
 
 const inter = Inter({ subsets: ['latin'] })
 const notoSans = Noto_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] })
@@ -19,10 +20,8 @@ export default function RootLayout({
     return (
         <html lang="jp">
             <body className={`${notoSans.className} ${notoSansJP.className}`}>
-                {/*<Frame layout={FrameLayout.CENTER}>*/}
-                {/*    { children }*/}
-                {/*</Frame>*/}
                 { children }
+                <Analytics/>
             </body>
         </html>
     )
