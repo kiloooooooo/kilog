@@ -13,8 +13,10 @@ export default function Navigation() {
             <Link href={'/about'} className={'body-l hover:underline'}>このサイトについて</Link>
             <div className={'mt-8 w-full flex flex-row flex-wrap items-center'}>
                 <span className={'body-l mr-4'}>Powered by</span>
-                <Image className={'light-only'} src={'/next.svg'} width={96} height={24} alt={'Next.js'}/>
-                <Image className={'dark-only'} src={'/next-white.svg'} width={96} height={24} alt={'Next.js'}/>
+                <Link href={'https://nextjs.org/'}>
+                    <Image className={'light-only'} src={'/next.svg'} width={96} height={24} alt={'Next.js'}/>
+                    <Image className={'dark-only'} src={'/next-white.svg'} width={96} height={24} alt={'Next.js'}/>
+                </Link>
             </div>
         </div>
     )
