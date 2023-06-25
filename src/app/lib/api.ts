@@ -103,7 +103,7 @@ export function getPagesCount(filterCategory: string | null) {
  * 投稿の一覧を取得
  */
 export function getPosts(page: number = 1, filterCategory: string | null) {
-    const dirs = fs.readdirSync(baseDir, { withFileTypes: true })
+    const dirs = fs.readdirSync(baseDir, { withFileTypes: true }).reverse()
     const startIdx = (page-1) * apiConfig.articlesPerPage
     const endIdx = page * apiConfig.articlesPerPage
     let articleDirs = dirs
