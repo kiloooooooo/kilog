@@ -20,10 +20,26 @@ export default function ArticleProps({ postProps }: { postProps: PostProperties 
         <div className={'flex flex-col'}>
             {/*<h1 className={'text-align-last-center'}>{ postProps.title }</h1>*/}
             <h1 className={''}>{ postProps.title }</h1>
-            <div className={'flex flex-row gap-4'}>
-                <span className={'body-l'}>カテゴリ:</span>
-                <Link href={categoryHref}><span className={'body-l text-blue-500 hover:underline'}>{ categoryName }</span></Link>
-            </div>
+            {/*<div className={'flex flex-row gap-4'}>*/}
+            {/*    <span className={'body-l'}>カテゴリ:</span>*/}
+            {/*    <Link href={categoryHref}><span className={'body-l text-blue-500 hover:underline'}>{ categoryName }</span></Link>*/}
+            {/*</div>*/}
+            <table className={'w-max'}>
+                <tbody>
+                    <tr>
+                        <td className={'body-l'}>公開</td>
+                        <td className={'body-l pr-2'}>:</td>
+                        <td className={'body-l'}>{ postProps.datetime }</td>
+                    </tr>
+                    <tr>
+                        <td className={'body-l'}>カテゴリ</td>
+                        <td className={'body-l pr-2'}>:</td>
+                        <td className={'body-l'}>
+                            <Link href={categoryHref}><span className={'body-l text-blue-500 hover:underline'}>{ categoryName }</span></Link>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             {/*<div className={'flex flex-row gap-4 justify-center mt-4'}>*/}
             <div className={'flex flex-row gap-4 mt-4'}>
                 {
