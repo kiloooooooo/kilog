@@ -11,7 +11,8 @@ export default function Navigation() {
             <Link href={'/tech'} className={'body-l hover:underline'}>技術</Link>
             <span className={'body-m mt-8 text-gray-400'}>その他</span>
             <Link href={'/about'} className={'body-l hover:underline'}>このサイトについて</Link>
-            <div className={'mt-8 w-full flex flex-row flex-wrap items-center'}>
+            <span className={'mt-8 body-l'}>v1.0.0</span>
+            <div className={'w-full flex flex-row flex-wrap items-center'}>
                 <span className={'body-l mr-2'}>Powered by</span>
                 <Link href={'https://nextjs.org/'}>
                     <Image className={'light-only'} src={'/next.svg'} width={64} height={16} alt={'Next.js'}/>
