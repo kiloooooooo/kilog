@@ -63,7 +63,8 @@ export default function customMiddleware(articleDir: string) {
                 const [lang, title] = infostring.split(':')
                 if (lang === 'math' && code.match(/^\$\$[\s\S]*\$\$$/)) {
                     const expr = code.substring(2, code.length - 2)
-                    return katex.renderToString(expr, { displayMode: true })
+                    const renderedKatex = katex.renderToString(expr, { displayMode: true })
+                    return `<div class="w-full mt-6 mb-6">${ renderedKatex }</div>`
                 }
                 else {
                     return `<div class="w-full mt-6 mb-6 flex flex-col rounded-2xl bg-blue-100 dark:bg-gray-900">
