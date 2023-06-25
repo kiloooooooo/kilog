@@ -6,7 +6,7 @@ import imageSize from 'image-size'
 import apiConfig from './apiconfig'
 
 const baseDirRemote = '/blog_posts'
-const baseDir = 'public' + baseDirRemote
+const baseDir = path.join(process.cwd(), 'public', baseDirRemote.substring(1))
 
 type PostProperties = {
     dirname: string,
