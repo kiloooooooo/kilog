@@ -22,9 +22,15 @@ function _math(expr: string) {
 export default function customMiddleware(articleDir: string) {
     return {
         walkTokens(token: any) {
+            // linkかimageじゃなければ除外
             if (!['link', 'image'].includes(token.type)) {
                 return
             }
+            // 普通のURLの場合は除外（"://"を含むか否か）
+            if (token.href.match(/^.*:\/\/.*$/)) {
+                return
+            }
+            // /blog_postsから始まっていない場合
             if (!token.href.startsWith('/blog_posts')) {
                 token.href = `/blog_posts/${articleDir}/${token.href}`
             }
@@ -83,6 +89,10 @@ export default function customMiddleware(articleDir: string) {
             },
             listitem(text: string) {
                 return `<li class="break-all">${text}</li>`
+            },
+            link(href: string, title: string, text: string) {
+                const titleAttr = title ? ` title="${title}"` : ''
+                return `<a class="body-l text-blue-500 hover:underline" href="${href}"${titleAttr}>${text}</a>`
             }
         }
     }
