@@ -1,6 +1,6 @@
 import './globals.css'
 import {Inter, Noto_Sans, Noto_Sans_JP} from 'next/font/google'
-import { Analytics } from '@vercel/analytics'
+import { Analytics } from '@vercel/analytics/react'
 
 
 const inter = Inter({ subsets: ['latin'] })
