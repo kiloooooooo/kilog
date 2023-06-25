@@ -3,7 +3,6 @@ import path from 'path'
 import crypto from 'crypto'
 import matter from 'gray-matter'
 import imageSize from 'image-size'
-import semver from 'semver'
 import apiConfig from './apiconfig'
 
 const baseDirRemote = '/blog_posts'
@@ -34,8 +33,25 @@ function formatDate(date: Date) {
     return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 }
 
-function getArticleCategoryMarkerPath(dir: string) {
-    const markerFile = fs.readdirSync(path.resolve(dir), { withFileTypes: true })
+function getArticleCategoryMarkerDir(dir: string) {
+    const writeableDir = process.env.TEMP_DIR
+        ? path.join(process.env.TEMP_DIR, dir.split(path.sep).reverse()[0])
+        : dir
+    // ディレクトリが存在しなければ fs.readdirSync で死ぬので
+    // なければ作っとく
+    try {
+        fs.statSync(writeableDir)
+    }
+    catch (e: any) {
+        // ディレクトリが存在しないので作成
+        fs.mkdirSync(writeableDir)
+    }
+
+    return writeableDir
+}
+
+function findCategoryMarker(markerDir: string) {
+    const markerFile = fs.readdirSync(path.resolve(markerDir), { withFileTypes: true })
         .filter((dirent) => dirent.isFile())
         .filter((file) => file.name.endsWith(apiConfig.categoryMarkerExt))
     return markerFile[0]
@@ -50,11 +66,12 @@ function getOrCreateCategoryMarker(dir: string) {
     const postFilePath = path.join(dir, 'post.md')
     const postFile = fs.readFileSync(postFilePath)
     const postFileChecksum = crypto.createHash('sha256').update(postFile).digest('hex')
-    const catMarker = getArticleCategoryMarkerPath(dir)
+    const catMarkerDir = getArticleCategoryMarkerDir(dir)
+    const catMarker = findCategoryMarker(catMarkerDir)
 
     // catMarkerがundefinedでなければ（=マーカファイルが存在していれば）
     if (catMarker) {
-        const catMarkerPath = path.resolve(path.join(dir, catMarker.name))
+        const catMarkerPath = path.resolve(path.join(catMarkerDir, catMarker.name))
         const markerChecksum = fs.readFileSync(catMarkerPath, 'utf-8')
 
         // catMarkerのチェックサムと記事のチェックサムを比較
@@ -77,7 +94,7 @@ function getOrCreateCategoryMarker(dir: string) {
     // カテゴリマーカ作り直し
     const { data, content } = matter(postFile)
     const category = data['category'] ?? apiConfig.defaultCategoryName
-    fs.writeFileSync(path.join(dir, `${category}${apiConfig.categoryMarkerExt}`), postFileChecksum, { encoding: 'utf-8' })
+    fs.writeFileSync(path.join(catMarkerDir, `${category}${apiConfig.categoryMarkerExt}`), postFileChecksum, { encoding: 'utf-8' })
     return category
 }
 
