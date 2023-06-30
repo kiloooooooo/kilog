@@ -17,6 +17,11 @@ const nextConfig = {
                 destination: '/tech/1',
                 permanent: false
             },
+            {
+                source: '/article/20230639105933',
+                destination: '/article/20230630105933',
+                permanent: true
+            }
         ]
     }
 }
