@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { dirname: string }
         openGraph: {
             title: title,
             description: description,
-            url: `article/${params.dirname}`,
+            url: `https://kilog.vercel.app/article/${params.dirname}`,
             siteName: 'KiLog',
             images: post == null
                 ? []
