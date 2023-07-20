@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Head from 'next/head'
 import { marked } from 'marked'
 import { getPost } from '@/app/lib/api'
