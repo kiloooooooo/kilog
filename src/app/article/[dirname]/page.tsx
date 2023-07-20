@@ -9,14 +9,34 @@ import FadeSlide from '@/components/slide_fade'
 
 export async function generateMetadata({ params }: { params: { dirname: string } }): Promise<Metadata> {
     const post = getPost(params.dirname)
+    const title = `${post?.properties.title} - KiLog` ?? 'KiLog'
+    const description = 'イラストと備忘録置き場 KiLog の記事ページです'
 
     return {
-        title: post?.properties.title ?? 'KiLog',
+        title: title,
         twitter: {
             card: 'summary_large_image',
-            title: post?.properties.title ?? 'KiLog',
+            title: title,
+            description: description,
             creator: '@nola_mk2',
             images: post == null ? [] : [post?.properties.leadingImagePath]
+        },
+        openGraph: {
+            title: title,
+            description: description,
+            url: '/',
+            siteName: 'KiLog',
+            images: post == null
+                ? []
+                : [
+                    {
+                        url: post?.properties.leadingImagePath,
+                        width: post?.properties.leadingImageWidth,
+                        height: post?.properties.leadingImageHeight
+                    }
+                ],
+            locale: 'ja_JP',
+            type: 'website'
         }
     }
 }
