@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: { category: string,
         openGraph: {
             title: title,
             description: description,
-            url: '/',
+            url: `${params.category}/${params.item}`,
             siteName: 'KiLog',
             locale: 'ja_JP',
             type: 'website'

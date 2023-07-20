@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { dirname: string }
         openGraph: {
             title: title,
             description: description,
-            url: '/',
+            url: `article/${params.dirname}`,
             siteName: 'KiLog',
             images: post == null
                 ? []
