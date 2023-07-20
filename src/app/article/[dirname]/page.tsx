@@ -27,6 +27,7 @@ export default function Article({ params }: { params: { dirname: string } }) {
                 <meta property={"twitter:title"} content={post.properties.title}/>
                 <meta property={"og:image"} content={post.properties.leadingImagePath}/>
                 <meta property={"og:title"} content={post.properties.title}/>
+                <title>{post.properties.title}</title>
             </Head>
             <FadeSlide>
                 <div className={'flex flex-col'}>
