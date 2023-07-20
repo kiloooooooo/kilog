@@ -21,7 +21,12 @@ const nextConfig = {
                 source: '/article/20230639105933',
                 destination: '/article/20230630105933',
                 permanent: true
-            }
+            },
+            {
+                source: '/article/20230720105621',
+                destination: '/article/20230720182544',
+                permanent: true
+            },
         ]
     }
 }
