@@ -6,4 +6,4 @@ tags:
   - あさひ
 ---
 
-![img](img/IMG_0913.png)
+![img](img/IMG_0913.jpeg)
